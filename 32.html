@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediatric Nursing Flashcards - Chapter 32: Integumentary Dysfunction</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            min-height: 100vh;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            height: 96vh;
+            background: #e8f5e9;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid #ff9800;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #388e3c, #2e7d32);
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><circle cx="20" cy="30" r="8" fill="white"/><circle cx="80" cy="30" r="8" fill="white"/><circle cx="50" cy="70" r="12" fill="white"/><path d="M30,50 Q50,30 70,50" stroke="white" stroke-width="3" fill="none"/><circle cx="40" cy="45" r="3" fill="white"/><circle cx="60" cy="45" r="3" fill="white"/></svg>');
+            background-size: 80px 80px;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+            position: relative;
+            color: #f1f8e9;
+            line-height: 1.2;
+        }
+        
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            position: relative;
+            color: #c8e6c9;
+            margin-bottom: 8px;
+        }
+        
+        .progress {
+            background: #1b5e20;
+            height: 6px;
+            width: 100%;
+            flex-shrink: 0;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #ff9800, #ffb300);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .section-nav {
+            display: flex;
+            gap: 6px;
+            padding: 8px 10px;
+            background: linear-gradient(135deg, #43a047, #388e3c);
+            border-bottom: 1px solid #ff9800;
+            flex-shrink: 0;
+            overflow-x: auto;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .section-btn {
+            padding: 5px 10px;
+            border: 2px solid #ff9800;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1b5e20;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .section-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 152, 0, 0.4);
+        }
+        
+        .section-btn.active {
+            background: linear-gradient(135deg, #ff9800, #ffb300);
+            color: #1b5e20;
+            border-color: #2e7d32;
+            box-shadow: 0 6px 12px rgba(255, 152, 0, 0.5);
+        }
+        
+        .flashcard {
+            padding: 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #e8f5e9;
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .question-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            border-left: 6px solid #ff9800;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .question-icon {
+            background: linear-gradient(135deg, #388e3c, #ff9800);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(56, 142, 60, 0.4);
+        }
+        
+        .question {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #263238;
+            flex-grow: 1;
+            font-weight: 500;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .multiple-select-indicator {
+            background: #d32f2f;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 6px;
+            white-space: nowrap;
+            box-shadow: 0 3px 6px rgba(211, 47, 47, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            flex: 1;
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .option {
+            padding: 8px 10px;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.85rem;
+            line-height: 1.3;
+            flex-shrink: 0;
+            min-height: 45px;
+        }
+        
+        .option:hover {
+            background: #f1f8e9;
+            border-color: #ff9800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 152, 0, 0.2);
+        }
+        
+        .option-letter {
+            background: #a5d6a7;
+            color: #1b5e20;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            border: 2px solid #81c784;
+        }
+        
+        /* CORRECT - ALWAYS GREEN */
+        .option.correct {
+            background: #c8e6c9;
+            border-color: #388e3c;
+            color: #1b5e20;
+        }
+        
+        .option.correct .option-letter {
+            background: #388e3c;
+            color: white;
+            border-color: #388e3c;
+        }
+        
+        /* INCORRECT - ALWAYS RED */
+        .option.incorrect {
+            background: #ffcdd2;
+            border-color: #d32f2f;
+            color: #b71c1c;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+        }
+        
+        .option.selected {
+            background: #a5d6a7;
+            border-color: #ff9800;
+            color: #1b5e20;
+        }
+        
+        .option.selected .option-letter {
+            background: #ff9800;
+            color: #1b5e20;
+            border-color: #388e3c;
+        }
+        
+        .feedback {
+            padding: 8px 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .feedback.correct {
+            background: #c8e6c9;
+            border: 3px solid #388e3c;
+            color: #1b5e20;
+            display: flex;
+        }
+        
+        .feedback.incorrect {
+            background: #ffcdd2;
+            border: 3px solid #d32f2f;
+            color: #b71c1c;
+            display: flex;
+        }
+        
+        .feedback-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #c8e6c9;
+            border-top: 2px solid #a5d6a7;
+            flex-shrink: 0;
+            gap: 8px;
+        }
+        
+        .counter {
+            font-weight: bold;
+            color: #1b5e20;
+            font-size: 0.9rem;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 2px solid #ff9800;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #388e3c, #ff9800);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(56, 142, 60, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #43a047, #388e3c);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(67, 160, 71, 0.4);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ff9800, #ffb300);
+            color: #212529;
+        }
+        
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(255, 152, 0, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(211, 47, 47, 0.4);
+        }
+        
+        .rationale {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 3px solid #ffb300;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 8px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(255, 179, 0, 0.2);
+            flex-shrink: 0;
+            overflow: hidden;
+            max-height: 120px;
+        }
+        
+        .rationale.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .rationale h4 {
+            color: #ff8f00;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .rationale p {
+            color: #856404;
+            line-height: 1.4;
+            font-size: 0.8rem;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stats {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 4px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .cancel-selection {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            margin: 0 auto 8px auto;
+            display: none;
+            box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .cancel-selection:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(211, 47, 47, 0.4);
+        }
+        
+        .cancel-selection.show {
+            display: flex;
+        }
+        
+        .multiple-select-instructions {
+            text-align: center;
+            color: #d32f2f;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            background: #fff3cd;
+            padding: 6px;
+            border-radius: 8px;
+            border: 2px solid #ffeaa7;
+            flex-shrink: 0;
+        }
+        
+        .calculation-container {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            border-radius: 8px;
+            padding: 10px;
+            border: 2px solid #c8e6c9;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .calculation-question {
+            font-size: 0.85rem;
+            color: #263238;
+            font-weight: 500;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #c8e6c9;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            max-height: 4.5em;
+            flex-shrink: 0;
+        }
+        
+        .calculation-options {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 5px;
+            overflow: hidden;
+            padding: 2px;
+            min-height: 0;
+        }
+        
+        .calculation-option {
+            padding: 8px;
+            border: 2px dashed #ff9800;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #388e3c;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            overflow: hidden;
+            line-height: 1.2;
+        }
+        
+        .calculation-option:hover {
+            background: #f1f8e9;
+            border-style: solid;
+            border-color: #ff9800;
+        }
+        
+        .calculation-option.correct {
+            background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+            border-color: #388e3c;
+            border-style: solid;
+            color: #1b5e20;
+        }
+        
+        .calculation-option.incorrect {
+            background: linear-gradient(135deg, #ffcdd2, #ef9a9a);
+            border-color: #d32f2f;
+            border-style: solid;
+            color: #b71c1c;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+        }
+        
+        /* Remove all scrollbars */
+        .options,
+        .calculation-options,
+        .rationale,
+        .container,
+        .flashcard,
+        body {
+            overflow: hidden !important;
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+        
+        .options::-webkit-scrollbar,
+        .calculation-options::-webkit-scrollbar,
+        .rationale::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                height: 98vh;
+            }
+            
+            .section-btn {
+                min-width: 100px;
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            
+            .calculation-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 10px 12px;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .navigation {
+                padding: 8px 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 6px;
+            }
+            
+            .counter {
+                order: -1;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 4px;
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .question {
+                font-size: 0.85rem;
+            }
+            
+            .option {
+                font-size: 0.8rem;
+                padding: 6px 8px;
+                min-height: 40px;
+            }
+            
+            .question-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .option-letter {
+                width: 22px;
+                height: 22px;
+                font-size: 0.75rem;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .container {
+                height: 99vh;
+            }
+            
+            .header {
+                padding: 8px 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.1rem;
+            }
+            
+            .header .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .question-container {
+                padding: 10px;
+                margin-bottom: 6px;
+            }
+            
+            .question {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+            
+            .option {
+                padding: 6px 8px;
+                min-height: 35px;
+                font-size: 0.75rem;
+            }
+            
+            .navigation {
+                padding: 6px 8px;
+            }
+            
+            .rationale {
+                max-height: 80px;
+                padding: 8px;
+            }
+            
+            .feedback {
+                padding: 6px 8px;
+                font-size: 0.75rem;
+            }
+            
+            .option-letter {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+            
+            .stats {
+                display: none;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .question-container {
+                padding: 8px;
+            }
+            
+            .question-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .option {
+                min-height: 30px;
+                padding: 4px 6px;
+                font-size: 0.7rem;
+            }
+            
+            .option-letter {
+                width: 18px;
+                height: 18px;
+                font-size: 0.65rem;
+            }
+            
+            .btn {
+                padding: 5px 8px;
+                font-size: 0.7rem;
+            }
+            
+            .rationale {
+                max-height: 60px;
+                padding: 6px;
+            }
+            
+            .rationale p {
+                font-size: 0.7rem;
+                line-height: 1.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Chapter 32: The Child with Integumentary Dysfunction</h1>
+            <div class="subtitle">Green/Orange Dermatology Theme - Skin Conditions & Burns</div>
+            <div class="stats">
+                <div class="stat">📚 52 Questions</div>
+                <div class="stat">🎯 Immediate Feedback</div>
+                <div class="stat">✅ Green/Red System</div>
+                <div class="stat">🔥 Burn Care Focus</div>
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="section-nav">
+            <button class="section-btn active" onclick="setSection('multiple-choice')">Multiple Choice (52)</button>
+            <button class="section-btn" onclick="setSection('all')">All Questions (52)</button>
+        </div>
+        
+        <div class="flashcard">
+            <div class="question-container">
+                <div class="question-icon" id="questionNumber">1</div>
+                <div class="question" id="question"></div>
+                <div class="multiple-select-indicator" id="multipleSelectIndicator" style="display: none;">Multiple Answers</div>
+            </div>
+            
+            <div class="multiple-select-instructions" id="multipleSelectInstructions" style="display: none;">
+                💡 Select ALL correct answers
+            </div>
+            
+            <div class="options" id="options"></div>
+            
+            <div class="calculation-container" id="calculationContainer" style="display: none;">
+                <div class="calculation-question" id="calculationQuestion"></div>
+                <div class="calculation-options" id="calculationOptions"></div>
+            </div>
+            
+            <button class="btn cancel-selection" id="cancelBtn" onclick="cancelSelection()">
+                🔄 Reset
+            </button>
+            
+            <div class="feedback" id="feedback">
+                <div class="feedback-icon" id="feedbackIcon"></div>
+                <div id="feedbackText"></div>
+            </div>
+            <div class="rationale" id="rationale">
+                <h4>💡 Rationale:</h4>
+                <p id="rationaleText"></p>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()">
+                ⬅️ Prev
+            </button>
+            <div class="counter" id="counter">1/52</div>
+            <button class="btn btn-warning" id="submitBtn" onclick="submitAnswer()" style="display: none;">
+                ✅ Submit
+            </button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">
+                Next ➡️
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Chapter 32 Data - Integumentary Dysfunction (from your Word document)
+        const sections = {
+            'multiple-choice': [
+                {
+                    question: "The nurse is taking care of a 7-year-old child with a skin rash called a papule. Which clinical finding should the nurse expect to assess with this type of skin rash?",
+                    options: [
+                        "A lesion that is elevated, palpable, firm and circumscribed; less than 1 cm in diameter",
+                        "A lesion that is elevated, flat-topped, firm, rough and superficial; greater than 1 cm in diameter",
+                        "An elevated lesion, firm, circumscribed, palpable; 1 to 2 cm in diameter",
+                        "An elevated lesion, circumscribed, filled with serous fluid; less than 1 cm in diameter"
+                    ],
+                    correct: 0,
+                    rationale: "A papule is elevated; palpable; firm; circumscribed; less than 1 cm in diameter; and brown, red, pink, tan, or bluish red."
+                },
+                {
+                    question: "The nurse is teaching nursing students about childhood skin lesions. Which is an elevated, circumscribed skin lesion that is less than 1 cm in diameter and filled with serous fluid?",
+                    options: ["Cyst", "Papule", "Pustule", "Vesicle"],
+                    correct: 3,
+                    rationale: "A vesicle is elevated, circumscribed, superficial, less than 1 cm in diameter, and filled with serous fluid."
+                },
+                {
+                    question: "The nurse is taking care of a 2-year-old child with a macule skin lesion. Which clinical finding should the nurse expect to assess with this type of lesion?",
+                    options: [
+                        "Flat, nonpalpable, and irregularly shaped lesion that is greater than 1 cm in diameter",
+                        "Heaped-up keratinized cells, flaky exfoliation, irregular, thick or thin, dry or oily, varied in size",
+                        "Flat, brown mole less than 1 cm in diameter",
+                        "Elevated, flat-topped, firm, rough, superficial papule greater than 1 cm in diameter"
+                    ],
+                    correct: 2,
+                    rationale: "A macule is flat; nonpalpable; circumscribed; less than 1 cm in diameter; and brown, red, purple, white, or tan."
+                },
+                {
+                    question: "A school-age child falls on the playground and has a small laceration on the forearm. The school nurse should do which to cleanse the wound?",
+                    options: [
+                        "Slowly pour hydrogen peroxide over wound.",
+                        "Soak arm in warm water and soap for at least 30 minutes.",
+                        "Gently cleanse with sterile pad and a nonstinging povidone-iodine solution.",
+                        "Wash wound gently with mild soap and water for several minutes."
+                    ],
+                    correct: 3,
+                    rationale: "Lacerations should be washed gently with mild soap and water or normal saline. A sterile pad is not necessary, and hydrogen peroxide and povidone-iodine should not be used because they have a cytotoxic effect on healthy cells and minimal effect on controlling infection."
+                },
+                {
+                    question: "A child steps on a nail and sustains a puncture wound of the foot. Which is the most appropriate method for cleansing this wound?",
+                    options: [
+                        "Wash wound thoroughly with chlorhexidine.",
+                        "Wash wound thoroughly with povidone-iodine.",
+                        "Soak foot in warm water and soap.",
+                        "Soak foot in solution of 50% hydrogen peroxide and 50% water."
+                    ],
+                    correct: 2,
+                    rationale: "Puncture wounds should be cleansed by soaking the foot in warm water and soap. Chlorhexidine, hydrogen peroxide, and povidone-iodine should not be used because they have a cytotoxic effect on healthy cells and minimal effect on controlling infection."
+                },
+                {
+                    question: "Which nursing consideration is important when caring for a child with impetigo contagiosa?",
+                    options: [
+                        "Apply topical corticosteroids to decrease inflammation.",
+                        "Carefully remove dressings so as not to dislodge undermined skin, crusts, and debris.",
+                        "Carefully wash hands and maintain cleanliness when caring for an infected child.",
+                        "Examine child under a Wood lamp for possible spread of lesions."
+                    ],
+                    correct: 2,
+                    rationale: "A major nursing consideration related to bacterial skin infections, such as impetigo contagiosa, is to prevent the spread of the infection and complications. This is done by thorough hand washing before and after contact with the affected child."
+                },
+                {
+                    question: "The nurse is caring for a 5-year-old child with impetigo contagiosa. The parents ask the nurse what will happen to their child's skin after the infection has subsided and healed. Which answer should the nurse give?",
+                    options: [
+                        "There will be no scarring.",
+                        "There may be some pigmented spots.",
+                        "It is likely there will be some slightly depressed scars.",
+                        "There will be some atrophic white scars."
+                    ],
+                    correct: 0,
+                    rationale: "Impetigo contagiosa tends to heal without scarring unless a secondary infection occurs."
+                },
+                {
+                    question: "Cellulitis is often caused by:",
+                    options: [
+                        "herpes zoster.",
+                        "Candida albicans.",
+                        "human papillomavirus.",
+                        "Streptococcus or Staphylococcus organisms."
+                    ],
+                    correct: 3,
+                    rationale: "Streptococci, staphylococci, and Haemophilus influenzae are the organisms usually responsible for cellulitis."
+                },
+                {
+                    question: "The nurse is conducting a staff in-service on appearance of childhood skin conditions. Lymphangitis (streaking) is frequently seen in which condition?",
+                    options: [
+                        "Cellulitis",
+                        "Folliculitis",
+                        "Impetigo contagiosa",
+                        "Staphylococcal scalded skin"
+                    ],
+                    correct: 0,
+                    rationale: "Lymphangitis is frequently seen in cellulitis. If it is present, hospitalization is usually required for parenteral antibiotics."
+                },
+                {
+                    question: "The nurse should expect to assess which causative agent in a child with warts?",
+                    options: ["Bacteria", "Fungus", "Parasite", "Virus"],
+                    correct: 3,
+                    rationale: "Human warts are caused by the human papillomavirus. Infection with bacteria, fungus, and parasites does not result in warts."
+                },
+                {
+                    question: "The nurse should implement which prescribed treatment for a child with warts?",
+                    options: [
+                        "Vaccination",
+                        "Local destruction",
+                        "Corticosteroids",
+                        "Specific antibiotic therapy"
+                    ],
+                    correct: 1,
+                    rationale: "Local destructive therapy individualized according to location, type, and number—including surgical removal, electrocautery, curettage, cryotherapy, caustic solutions, x-ray treatment, and laser therapies—is used."
+                },
+                {
+                    question: "Herpes zoster is caused by the varicella virus and has an affinity for:",
+                    options: [
+                        "sympathetic nerve fibers.",
+                        "parasympathetic nerve fibers.",
+                        "posterior root ganglia and posterior horn of the spinal cord.",
+                        "lateral and dorsal columns of the spinal cord."
+                    ],
+                    correct: 2,
+                    rationale: "The herpes zoster virus has an affinity for posterior root ganglia, the posterior horn of the spinal cord, and skin."
+                },
+                {
+                    question: "The nurse is taking care of a 7-year-old child with herpes simplex virus (type 1 or 2). Which prescribed medication should the nurse expect to be included in the treatment plan?",
+                    options: [
+                        "Corticosteroids",
+                        "Oral griseofulvin",
+                        "Oral antiviral agent",
+                        "Topical and/or systemic antibiotic"
+                    ],
+                    correct: 2,
+                    rationale: "Oral antiviral agents are effective for viral infections such as herpes simplex."
+                },
+                {
+                    question: "Tinea capitis (ringworm), frequently found in schoolchildren, is caused by a(n):",
+                    options: ["virus.", "fungus.", "allergic reaction.", "bacterial infection."],
+                    correct: 1,
+                    rationale: "Ringworm is caused by a group of closely related filamentous fungi that invade primarily the stratum corneum, hair, and nails."
+                },
+                {
+                    question: "The nurse is caring for a school-age child with a tinea capitis (ringworm) infection. The nurse should expect that therapeutic management for this child includes:",
+                    options: [
+                        "administering oral griseofulvin.",
+                        "administering topical or oral antibiotics.",
+                        "applying topical sulfonamides.",
+                        "applying Burow solution compresses to affected area."
+                    ],
+                    correct: 0,
+                    rationale: "Treatment with the antifungal agent griseofulvin is part of the treatment for the fungal disease ringworm."
+                },
+                {
+                    question: "Parents tell the nurse that their child keeps scratching the areas where he has poison ivy. The nurse's response should be based on which knowledge?",
+                    options: [
+                        "Poison ivy does not itch and needs further investigation.",
+                        "Scratching the lesions will not cause a problem.",
+                        "Scratching the lesions will cause the poison ivy to spread.",
+                        "Scratching the lesions may cause them to become secondarily infected."
+                    ],
+                    correct: 3,
+                    rationale: "Poison ivy is a contact dermatitis that results from exposure to the oil urushiol in the plant. Every effort is made to prevent the child from scratching because the lesions can become secondarily infected."
+                },
+                {
+                    question: "The nurse is taking care of a child with scabies. Which primary clinical manifestation should the nurse expect to assess with this disease?",
+                    options: ["Edema", "Redness", "Pruritus", "Maceration"],
+                    correct: 2,
+                    rationale: "Scabies is caused by the scabies mite. The inflammatory response and intense itching occur after the host has become sensitized to the mite."
+                },
+                {
+                    question: "Which is usually the only symptom of pediculosis capitis (head lice)?",
+                    options: ["Itching", "Vesicles", "Scalp rash", "Localized inflammatory response"],
+                    correct: 0,
+                    rationale: "Itching is generally the only manifestation of pediculosis capitis (head lice)."
+                },
+                {
+                    question: "The nurse is talking to the parents of a child with pediculosis capitis. Which should the nurse include when explaining how to manage pediculosis capitis?",
+                    options: [
+                        "You will need to cut the hair shorter if infestation and nits are severe.",
+                        "You can distinguish viable from nonviable nits, and remove all viable ones.",
+                        "You can wash all nits out of hair with a regular shampoo.",
+                        "You will need to remove nits with an extra-fine tooth comb or tweezers."
+                    ],
+                    correct: 3,
+                    rationale: "Treatment consists of the application of pediculicide and manual removal of nit cases. An extra-fine tooth comb facilitates manual removal."
+                },
+                {
+                    question: "The management of a child who has just been stung by a bee or wasp should include the application of:",
+                    options: [
+                        "cool compresses.",
+                        "warm compresses.",
+                        "antibiotic cream.",
+                        "corticosteroid cream."
+                    ],
+                    correct: 0,
+                    rationale: "Bee or wasp stings are initially treated by carefully removing stinger, cleansing with soap and water, applying cool compresses, and using common household agents such as lemon juice or a paste made with aspirin and baking soda."
+                },
+                {
+                    question: "A father calls the clinic nurse because his 2-year-old child was bitten by a black widow spider. The nurse should advise which to the father?",
+                    options: [
+                        "Apply warm compresses.",
+                        "Carefully scrape off stinger.",
+                        "Take child to emergency department.",
+                        "Apply a thin layer of corticosteroid cream."
+                    ],
+                    correct: 2,
+                    rationale: "The venom of the black widow spider has a neurotoxic effect. The father should take the child to the emergency department for treatment with antivenin and muscle relaxants as needed."
+                },
+                {
+                    question: "A mother calls the emergency department nurse because her child was stung by a scorpion. The nurse should recommend:",
+                    options: [
+                        "administering an antihistamine.",
+                        "cleansing area with soap and water.",
+                        "keeping the child quiet and coming to the emergency department.",
+                        "removing the stinger and applying cool compresses."
+                    ],
+                    correct: 2,
+                    rationale: "Venomous species of scorpions inject venom that contains hemolysins, endotheliolysins, and neurotoxins. The absorption of the venom is delayed by keeping the child quiet and the involved area in a dependent position."
+                },
+                {
+                    question: "Rocky Mountain spotted fever is caused by the bite of a:",
+                    options: ["flea.", "tick.", "mosquito.", "mouse or rat."],
+                    correct: 1,
+                    rationale: "Rocky Mountain spotted fever is caused by a tick. The tick must attach and feed for at least 1 to 2 hours to transmit the disease."
+                },
+                {
+                    question: "The school nurse is conducting a class for school-age children on Lyme disease. Which is characteristic of Lyme disease?",
+                    options: [
+                        "Difficult to prevent",
+                        "Treated with oral antibiotics in stages 1, 2, and 3",
+                        "Caused by a spirochete that enters the skin through a tick bite",
+                        "Common in geographic areas where the soil contains the mycotic spores that cause the disease"
+                    ],
+                    correct: 2,
+                    rationale: "Lyme disease is caused by Borrelia burgdorferi, a spirochete spread by ticks."
+                },
+                {
+                    question: "The nurse is examining 12-month-old Amy, who was brought to the clinic for persistent diaper rash. The nurse finds perianal inflammation with satellite lesions that cross the inguinal folds. This is most likely caused by:",
+                    options: [
+                        "impetigo.",
+                        "Candida albicans.",
+                        "urine and feces.",
+                        "infrequent diapering."
+                    ],
+                    correct: 1,
+                    rationale: "C. albicans infection produces perianal inflammation and a maculopapular rash with satellite lesions that may cross the inguinal folds."
+                },
+                {
+                    question: "The nurse is teaching a class on preventing diaper rash in newborns to a group of new parents. Which statement made by a parent indicates a correct understanding of the teaching?",
+                    options: [
+                        "I should cleanse my infant's skin with a commercial diaper wipe every time I change the diaper.",
+                        "If my infant's buttocks become slightly red, I will expose the skin to air.",
+                        "I should wash my infant's buttocks with soap before applying a thin layer of oil.",
+                        "I will apply baby oil and powder to the creases in my infant's buttocks."
+                    ],
+                    correct: 1,
+                    rationale: "Slightly irritated skin can be exposed to air, not heat, to dry completely."
+                },
+                {
+                    question: "Which prescribed treatment should the nurse plan to implement for a child with psoriasis?",
+                    options: [
+                        "Antihistamines",
+                        "Oral antibiotics",
+                        "Topical application of calamine lotion",
+                        "Tar and exposure to sunlight and ultraviolet light"
+                    ],
+                    correct: 3,
+                    rationale: "Psoriasis is treated with tar preparations and exposure to ultraviolet B light or natural sunlight."
+                },
+                {
+                    question: "Atopic dermatitis (eczema) in the infant is:",
+                    options: [
+                        "easily cured.",
+                        "worse in humid climates.",
+                        "associated with upper respiratory tract infections.",
+                        "associated with allergy with a hereditary tendency."
+                    ],
+                    correct: 3,
+                    rationale: "Atopic dermatitis is a type of pruritic eczema that usually begins during infancy and is associated with allergy with a hereditary tendency."
+                },
+                {
+                    question: "Nursing care of the infant with atopic dermatitis focuses on:",
+                    options: [
+                        "feeding a variety of foods.",
+                        "keeping lesions dry.",
+                        "preventing infection.",
+                        "using fabric softener to avoid rough cloth."
+                    ],
+                    correct: 2,
+                    rationale: "The eczematous lesions of atopic dermatitis are intensely pruritic. Scratching can lead to new lesions and secondary infection."
+                },
+                {
+                    question: "Tretinoin (Retin-A) is a topical agent commonly used to treat acne. Nursing considerations with this drug should include:",
+                    options: [
+                        "teaching to avoid use of sunscreen agents.",
+                        "applying generously to the skin.",
+                        "explaining that medication should not be applied until at least 20 to 30 minutes after washing.",
+                        "explaining that erythema and peeling are indications of toxicity."
+                    ],
+                    correct: 2,
+                    rationale: "The medication should not be applied for at least 20 to 30 minutes after washing to decrease the burning sensation."
+                },
+                {
+                    question: "When is isotretinoin (Accutane) indicated for the treatment of acne during adolescence?",
+                    options: [
+                        "The acne has not responded to other treatments.",
+                        "The adolescent is or may become pregnant.",
+                        "The adolescent is unable to give up foods causing acne.",
+                        "Frequent washing with antibacterial soap has been unsuccessful."
+                    ],
+                    correct: 0,
+                    rationale: "Isotretinoin is reserved for severe cystic acne that has not responded to other treatments."
+                },
+                {
+                    question: "A child experiences frostbite of the fingers after prolonged exposure to the cold. Which intervention should the nurse implement first?",
+                    options: [
+                        "Rapid rewarming of the fingers by placing in warm water",
+                        "Placing the hand in cool water",
+                        "Slow rewarming by wrapping in warm cloth",
+                        "Using an ice pack to keep cold until medical intervention is possible"
+                    ],
+                    correct: 0,
+                    rationale: "Rapid rewarming is accomplished by immersing the part in well-agitated water at 37.8 to 42.2°C (100 to 108°F)."
+                },
+                {
+                    question: "Which best describes a full-thickness (third-degree) burn?",
+                    options: [
+                        "Erythema and pain",
+                        "Skin showing erythema followed by blister formation",
+                        "Destruction of all layers of skin evident with extension into subcutaneous tissue",
+                        "Destruction injury involving underlying structures such as muscle, fascia, and bone"
+                    ],
+                    correct: 2,
+                    rationale: "A third-degree, or full-thickness, burn is a serious injury that involves the entire epidermis and dermis and extends into the subcutaneous tissues."
+                },
+                {
+                    question: "A child is admitted with extensive burns. The nurse notes that there are burns on the child's lips and singed nasal hairs. The nurse should suspect that the child has a(n):",
+                    options: [
+                        "chemical burn.",
+                        "inhalation injury.",
+                        "electrical burn.",
+                        "hot-water scald."
+                    ],
+                    correct: 1,
+                    rationale: "Evidence of an inhalation injury is burns of the face and lips, singed nasal hairs, and laryngeal edema."
+                },
+                {
+                    question: "Which explains physiologically the edema formation that occurs with burns?",
+                    options: [
+                        "Vasoconstriction",
+                        "Decreased capillary permeability",
+                        "Increased capillary permeability",
+                        "Decreased hydrostatic pressure within capillaries"
+                    ],
+                    correct: 2,
+                    rationale: "With a major burn, an increase in capillary permeability occurs, allowing plasma proteins, fluids, and electrolytes to be lost."
+                },
+                {
+                    question: "The most immediate threat to life in children with thermal injuries is:",
+                    options: ["shock.", "anemia.", "local infection.", "systemic sepsis."],
+                    correct: 0,
+                    rationale: "The immediate threat to life in children with thermal injuries is airway compromise and profound shock."
+                },
+                {
+                    question: "After the acute stage and during the healing process, the primary complication from burn injury is:",
+                    options: ["asphyxia.", "shock.", "renal shutdown.", "infection."],
+                    correct: 3,
+                    rationale: "During the healing phase, local infection and sepsis are the primary complications."
+                },
+                {
+                    question: "An adolescent girl is cooking on a gas stove when her bathrobe catches fire. Her father smothers the flames with a rug and calls an ambulance. She has sustained major burns over much of her body. Which is important in her immediate care?",
+                    options: [
+                        "Wrap her in a blanket until help arrives.",
+                        "Encourage her to drink clear liquids.",
+                        "Place her in a tub of cool water.",
+                        "Remove her burned clothing and jewelry."
+                    ],
+                    correct: 3,
+                    rationale: "In major burns, burned clothing should be removed to avoid further damage from smoldering fabric and hot beads of melted synthetic materials."
+                },
+                {
+                    question: "A young child has sustained a minor burn to the foot. Which is recommended for treatment of a minor burn?",
+                    options: [
+                        "Apply ice to foot.",
+                        "Apply cortisone ointment.",
+                        "Apply an occlusive dressing.",
+                        "Clean the wound with a mild soap and tepid water."
+                    ],
+                    correct: 3,
+                    rationale: "In minor burns, the best method of treatment is to cleanse the wound with a mild soap and tepid water."
+                },
+                {
+                    question: "A toddler sustains a minor burn on the hand from hot coffee. Which is the first action the nurse should recommend in treating this burn?",
+                    options: [
+                        "Apply ice to burned area.",
+                        "Hold burned area under cool running water.",
+                        "Break any blisters with a sterile needle.",
+                        "Cleanse wound with soap and warm water."
+                    ],
+                    correct: 1,
+                    rationale: "In minor burns, the best method to stop the burning process is to hold the burned area under cool running water."
+                },
+                {
+                    question: "A parent of a child with major burns asks the nurse why a high-calorie and high-protein diet is prescribed. Which response should the nurse make?",
+                    options: [
+                        "The diet promotes growth.",
+                        "The diet will improve appetite.",
+                        "The diet will diminish risks of stress-induced hyperglycemia.",
+                        "The diet will avoid protein breakdown."
+                    ],
+                    correct: 3,
+                    rationale: "The diet must provide sufficient calories to meet the increased metabolic needs and enough protein to avoid protein breakdown."
+                },
+                {
+                    question: "Fentanyl and midazolam (Versed) are given before débridement of a child's burn wounds. Which is the rationale for administration of these medications?",
+                    options: [
+                        "Promote healing.",
+                        "Prevent infection.",
+                        "Provide pain relief.",
+                        "Limit amount of débridement that will be necessary."
+                    ],
+                    correct: 2,
+                    rationale: "Fentanyl and midazolam provide excellent intravenous sedation and analgesia to control procedural pain in children with burns."
+                },
+                {
+                    question: "Nitrous oxide is being administered to a child with extensive burn injuries. Which is the purpose of this medication?",
+                    options: [
+                        "Promote healing.",
+                        "Prevent infection.",
+                        "Provide anesthesia.",
+                        "Improve urinary output."
+                    ],
+                    correct: 2,
+                    rationale: "The use of short-acting anesthetic agents, such as propofol and nitrous oxide, has proven beneficial in eliminating procedural pain."
+                },
+                {
+                    question: "Hydrotherapy is required to treat a child with extensive partial-thickness burn wounds. Which is the primary purpose of hydrotherapy?",
+                    options: [
+                        "Débride the wounds.",
+                        "Increase peripheral blood flow.",
+                        "Provide pain relief.",
+                        "Destroy bacteria on the skin."
+                    ],
+                    correct: 0,
+                    rationale: "The water acts to loosen and remove sloughing tissue, exudate, and topical medications."
+                },
+                {
+                    question: "A child with extensive burns requires débridement. The nurse should anticipate which priority goal related to this procedure?",
+                    options: ["Reduce pain.", "Prevent bleeding.", "Maintain airway.", "Restore fluid balance."],
+                    correct: 0,
+                    rationale: "Partial-thickness burns require débridement of devitalized tissue to promote healing. The procedure is painful and requires analgesia and sedation before the procedure."
+                },
+                {
+                    question: "Biologic dressings are applied to a child with partial-thickness burns of both legs. Which nursing intervention should be implemented?",
+                    options: [
+                        "Observing wounds for bleeding",
+                        "Observing wounds for signs of infection",
+                        "Monitoring closely for signs of shock",
+                        "Splinting legs to prevent movement"
+                    ],
+                    correct: 1,
+                    rationale: "When applied early to a superficial partial-thickness injury, biologic dressings stimulate epithelial growth and hasten wound healing. If the dressing covers areas of heavy microbial contamination, infection occurs beneath the dressing."
+                },
+                {
+                    question: "Which is one of the first signs of overwhelming sepsis in a child with burn injuries?",
+                    options: ["Seizures", "Bradycardia", "Disorientation", "Decreased blood pressure"],
+                    correct: 2,
+                    rationale: "Disorientation in the burn patient is one of the first signs of overwhelming sepsis and may indicate inadequate hydration."
+                },
+                {
+                    question: "Which is an effective strategy to reduce the stress of burn dressing procedures?",
+                    options: [
+                        "Give child as many choices as possible.",
+                        "Reassure child that dressing changes are not painful.",
+                        "Explain to child why analgesics cannot be used.",
+                        "Encourage child to master stress with controlled passivity."
+                    ],
+                    correct: 0,
+                    rationale: "Children who understand the procedure and have some perceived control demonstrate less maladaptive behavior."
+                },
+                {
+                    question: "Which is an important consideration for the nurse when changing dressings and applying topical medication to a child's abdomen and leg burns?",
+                    options: [
+                        "Apply topical medication with clean hands.",
+                        "Wash hands and forearms before and after dressing change.",
+                        "If dressings adhere to the wound, soak in hot water before removal.",
+                        "Apply dressing so that movement is limited during the healing process."
+                    ],
+                    correct: 1,
+                    rationale: "Frequent hand and forearm washing is the single most important element of the infection-control program."
+                },
+                {
+                    question: "The family of a 4-month-old infant will be vacationing at the beach. Which should the nurse teach the family about exposure of the infant to the sun?",
+                    options: [
+                        "Use sun block on the infant's nose and ear tips.",
+                        "Use topical sunscreen product with a sun protective factor of 15.",
+                        "The infant can be exposed to the sun for 15-minute increments.",
+                        "Keep the infant in total shade at all times."
+                    ],
+                    correct: 3,
+                    rationale: "The infant should be kept out of the sun or be physically shaded from it."
+                },
+                {
+                    question: "A nurse is teaching a parent of an infant about treatment of seborrhea dermatitis (cradle cap). Which should the nurse include in the instructions?",
+                    options: [
+                        "Shampoo every three days with a mild soap.",
+                        "The hair should be shampooed with a medicated shampoo.",
+                        "Shampoo every day with an antiseborrheic shampoo.",
+                        "The loosened crusts should not be removed with a fine-toothed comb."
+                    ],
+                    correct: 2,
+                    rationale: "When seborrheic lesions are present, the treatment is directed at removing the crusts. Shampooing should be done daily with a mild soap or commercial baby shampoo; an antiseborrheic shampoo may be used."
+                },
+                {
+                    question: "The nurse is teaching parents of toddlers about animal safety. Which should be included in the teaching session?",
+                    options: [
+                        "Petting dogs in the neighborhood should be encouraged to prevent fear of dogs.",
+                        "The toddler is safe to approach an animal if the animal is chained.",
+                        "It is permissible for your toddler to feed treats to a dog.",
+                        "Teach your toddler not to disturb an animal that is eating."
+                    ],
+                    correct: 3,
+                    rationale: "Parents should be taught that toddlers should not disturb an animal that is eating, sleeping or caring for young puppies or kittens."
+                }
+            ],
+            
+            'all': []
+        };
+
+        // Combine all questions for the 'all' section
+        sections['all'] = sections['multiple-choice'].map(q => ({...q, section: 'multiple-choice'}));
+
+        let currentSection = 'multiple-choice';
+        let currentQuestion = 0;
+        let selectedOption = null;
+        let selectedOptions = [];
+        let isSubmitted = false;
+        let answers = {
+            'multiple-choice': Array(sections['multiple-choice'].length).fill(null),
+            'all': Array(sections['all'].length).fill(null)
+        };
+
+        function setSection(section) {
+            currentSection = section;
+            currentQuestion = 0;
+            selectedOption = null;
+            selectedOptions = [];
+            isSubmitted = false;
+            
+            document.querySelectorAll('.section-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            loadQuestion();
+        }
+
+        function isMultipleResponseQuestion() {
+            if (currentSection === 'all') {
+                const questionData = getCurrentQuestionData();
+                return questionData?.section === 'multiple-response' || Array.isArray(questionData?.correct);
+            }
+            return false;
+        }
+
+        function isCalculationSection() {
+            return false;
+        }
+
+        function getCurrentQuestionData() {
+            if (currentSection === 'all') {
+                return sections['all'][currentQuestion] || null;
+            } else {
+                return sections[currentSection][currentQuestion];
+            }
+        }
+
+        function loadQuestion() {
+            const questionData = getCurrentQuestionData();
+            
+            if (!questionData) return;
+            
+            const isMultipleResponse = isMultipleResponseQuestion();
+            const isCalculation = isCalculationSection();
+            
+            // Update UI elements visibility
+            document.getElementById('calculationContainer').style.display = isCalculation ? 'flex' : 'none';
+            document.getElementById('options').style.display = isCalculation ? 'none' : 'flex';
+            document.getElementById('multipleSelectIndicator').style.display = isMultipleResponse ? 'block' : 'none';
+            document.getElementById('multipleSelectInstructions').style.display = isMultipleResponse ? 'block' : 'none';
+            document.getElementById('cancelBtn').classList.remove('show');
+            document.getElementById('submitBtn').style.display = isMultipleResponse ? 'flex' : 'none';
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            
+            let totalQuestions = getTotalQuestions();
+            
+            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('counter').textContent = `${currentQuestion + 1}/${totalQuestions}`;
+            
+            if (isCalculation) {
+                document.getElementById('calculationQuestion').textContent = questionData.question;
+                loadCalculationOptions(questionData);
+            } else {
+                document.getElementById('question').textContent = questionData.question;
+                loadOptions(questionData);
+            }
+            
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('rationale').classList.remove('show');
+            
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            const isLastQuestion = currentQuestion >= totalQuestions - 1;
+            document.getElementById('nextBtn').textContent = isLastQuestion ? 'Finish ➡️' : 'Next ➡️';
+            document.getElementById('nextBtn').disabled = true;
+            
+            // Load saved answer state
+            const storedAnswer = answers[currentSection][currentQuestion];
+            if (storedAnswer !== null && storedAnswer !== undefined) {
+                if (isMultipleResponse) {
+                    selectedOptions = storedAnswer.selected || [];
+                    isSubmitted = storedAnswer.submitted || false;
+                    
+                    if (isSubmitted) {
+                        showFeedbackForMultipleResponse(questionData);
+                        document.getElementById('nextBtn').disabled = false;
+                        document.getElementById('submitBtn').disabled = true;
+                    } else {
+                        highlightSelectedOptionsForMultipleResponse();
+                        document.getElementById('submitBtn').disabled = selectedOptions.length === 0;
+                        document.getElementById('nextBtn').disabled = false;
+                        if (selectedOptions.length > 0) {
+                            document.getElementById('cancelBtn').classList.add('show');
+                        }
+                    }
+                } else if (isCalculation) {
+                    selectedOption = storedAnswer;
+                    highlightCalculationOption(storedAnswer, questionData);
+                    showFeedback(storedAnswer, questionData);
+                    document.getElementById('nextBtn').disabled = false;
+                    document.getElementById('cancelBtn').classList.add('show');
+                } else {
+                    selectedOption = storedAnswer;
+                    highlightSelectedOption(storedAnswer, questionData);
+                    showFeedback(storedAnswer, questionData);
+                    document.getElementById('nextBtn').disabled = false;
+                    document.getElementById('cancelBtn').classList.add('show');
+                }
+            } else {
+                selectedOption = null;
+                selectedOptions = [];
+                isSubmitted = false;
+                if (isMultipleResponse) {
+                    document.getElementById('submitBtn').disabled = true;
+                }
+            }
+        }
+
+        function loadCalculationOptions(questionData) {
+            const calculationOptions = document.getElementById('calculationOptions');
+            calculationOptions.innerHTML = '';
+            
+            if (questionData.options) {
+                questionData.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'calculation-option';
+                    optionDiv.textContent = option;
+                    optionDiv.onclick = () => selectCalculationOption(index, questionData);
+                    calculationOptions.appendChild(optionDiv);
+                });
+                
+                const storedAnswer = answers[currentSection][currentQuestion];
+                if (storedAnswer !== null && storedAnswer !== undefined) {
+                    highlightCalculationOption(storedAnswer, questionData);
+                }
+            }
+        }
+
+        function loadOptions(questionData) {
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            questionData.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.innerHTML = `
+                    <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+                    <div class="option-text">${option}</div>
+                `;
+                optionElement.onclick = () => selectOption(index, questionData);
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        function selectOption(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            if (isMultipleResponseQuestion()) {
+                handleMultipleResponseSelect(index, questionData);
+            } else {
+                handleSingleSelect(index, questionData);
+            }
+        }
+
+        function selectCalculationOption(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            answers[currentSection][currentQuestion] = index;
+            selectedOption = index;
+            
+            highlightCalculationOption(index, questionData);
+            showFeedback(index, questionData);
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('cancelBtn').classList.add('show');
+        }
+
+        function handleSingleSelect(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            answers[currentSection][currentQuestion] = index;
+            selectedOption = index;
+            
+            highlightSelectedOption(index, questionData);
+            showFeedback(index, questionData);
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('cancelBtn').classList.add('show');
+        }
+
+        function handleMultipleResponseSelect(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            if (isSubmitted) return;
+            
+            const optionIndex = selectedOptions.indexOf(index);
+            if (optionIndex === -1) {
+                selectedOptions.push(index);
+            } else {
+                selectedOptions.splice(optionIndex, 1);
+            }
+            
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                if (selectedOptions.includes(i)) {
+                    option.classList.add('selected');
+                }
+            });
+            
+            // Save the selection
+            if (!answers[currentSection][currentQuestion]) {
+                answers[currentSection][currentQuestion] = {selected: [], submitted: false};
+            }
+            answers[currentSection][currentQuestion].selected = selectedOptions;
+            answers[currentSection][currentQuestion].submitted = false;
+            
+            document.getElementById('submitBtn').disabled = selectedOptions.length === 0;
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('cancelBtn').classList.toggle('show', selectedOptions.length > 0);
+        }
+
+        function highlightCalculationOption(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            const options = document.querySelectorAll('.calculation-option');
+            
+            options.forEach((option, i) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                if (i === index) {
+                    if (i === questionData.correct) {
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('incorrect');
+                        options[questionData.correct].classList.add('correct');
+                    }
+                }
+            });
+        }
+
+        function highlightSelectedOption(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach((option, i) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                
+                if (i === index) {
+                    if (i === questionData.correct) {
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('incorrect');
+                        options[questionData.correct].classList.add('correct');
+                    }
+                }
+            });
+        }
+
+        function highlightSelectedOptionsForMultipleResponse() {
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach((option, i) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                if (selectedOptions.includes(i)) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        function submitAnswer() {
+            if (selectedOptions.length === 0) return;
+            
+            isSubmitted = true;
+            
+            if (!answers[currentSection][currentQuestion]) {
+                answers[currentSection][currentQuestion] = {selected: [], submitted: false};
+            }
+            answers[currentSection][currentQuestion].submitted = true;
+            
+            const questionData = getCurrentQuestionData();
+            showFeedbackForMultipleResponse(questionData);
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('cancelBtn').classList.remove('show');
+        }
+
+        function showFeedback(index, questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            const feedback = document.getElementById('feedback');
+            const feedbackIcon = document.getElementById('feedbackIcon');
+            const feedbackText = document.getElementById('feedbackText');
+            const rationale = document.getElementById('rationale');
+            const rationaleText = document.getElementById('rationaleText');
+            
+            if (index === questionData.correct) {
+                feedback.className = 'feedback correct';
+                feedbackIcon.textContent = '✅';
+                feedbackText.textContent = 'Correct! Well done.';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedbackIcon.textContent = '❌';
+                const correctLetter = String.fromCharCode(65 + questionData.correct);
+                feedbackText.textContent = `Incorrect. Correct: ${correctLetter}`;
+            }
+            
+            feedback.style.display = 'flex';
+            rationaleText.textContent = questionData.rationale;
+            rationale.classList.add('show');
+        }
+
+        function showFeedbackForMultipleResponse(questionData) {
+            if (!questionData) questionData = getCurrentQuestionData();
+            
+            const feedback = document.getElementById('feedback');
+            const feedbackIcon = document.getElementById('feedbackIcon');
+            const feedbackText = document.getElementById('feedbackText');
+            const rationale = document.getElementById('rationale');
+            const rationaleText = document.getElementById('rationaleText');
+            
+            const allCorrectSelected = questionData.correct.every(c => selectedOptions.includes(c));
+            const noIncorrectSelected = selectedOptions.every(s => questionData.correct.includes(s));
+            
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                if (questionData.correct.includes(i)) {
+                    option.classList.add('correct');
+                }
+                if (selectedOptions.includes(i) && !questionData.correct.includes(i)) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            if (allCorrectSelected && noIncorrectSelected) {
+                feedback.className = 'feedback correct';
+                feedbackIcon.textContent = '✅';
+                feedbackText.textContent = 'Perfect! All correct selected.';
+            } else if (allCorrectSelected && !noIncorrectSelected) {
+                feedback.className = 'feedback incorrect';
+                feedbackIcon.textContent = '⚠️';
+                feedbackText.textContent = 'Almost! All correct + some incorrect.';
+            } else if (!allCorrectSelected && noIncorrectSelected) {
+                feedback.className = 'feedback incorrect';
+                feedbackIcon.textContent = '⚠️';
+                feedbackText.textContent = 'Partially correct! Some correct, missed others.';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedbackIcon.textContent = '❌';
+                feedbackText.textContent = 'Incorrect. Missed correct & selected incorrect.';
+            }
+            
+            feedback.style.display = 'flex';
+            rationaleText.textContent = questionData.rationale;
+            rationale.classList.add('show');
+        }
+
+        function cancelSelection() {
+            const questionData = getCurrentQuestionData();
+            
+            if (isMultipleResponseQuestion()) {
+                selectedOptions = [];
+                isSubmitted = false;
+                
+                const options = document.querySelectorAll('.option');
+                options.forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                if (answers[currentSection][currentQuestion]) {
+                    answers[currentSection][currentQuestion] = {selected: [], submitted: false};
+                }
+                
+                document.getElementById('nextBtn').disabled = true;
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('feedback').style.display = 'none';
+                document.getElementById('rationale').classList.remove('show');
+                document.getElementById('cancelBtn').classList.remove('show');
+            } else if (isCalculationSection()) {
+                answers[currentSection][currentQuestion] = null;
+                selectedOption = null;
+                
+                document.querySelectorAll('.calculation-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                document.getElementById('feedback').style.display = 'none';
+                document.getElementById('rationale').classList.remove('show');
+                document.getElementById('nextBtn').disabled = true;
+                document.getElementById('cancelBtn').classList.remove('show');
+            } else {
+                answers[currentSection][currentQuestion] = null;
+                selectedOption = null;
+                
+                const options = document.querySelectorAll('.option');
+                options.forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                document.getElementById('feedback').style.display = 'none';
+                document.getElementById('rationale').classList.remove('show');
+                document.getElementById('nextBtn').disabled = true;
+                document.getElementById('cancelBtn').classList.remove('show');
+            }
+        }
+
+        function nextCard() {
+            const totalQuestions = getTotalQuestions();
+            
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                selectedOption = null;
+                selectedOptions = [];
+                isSubmitted = false;
+                loadQuestion();
+            } else {
+                let correctCount = 0;
+                let totalAnswered = 0;
+                
+                Object.keys(answers).forEach(section => {
+                    answers[section].forEach((answer, index) => {
+                        if (answer !== null && answer !== undefined) {
+                            totalAnswered++;
+                            const questionData = getQuestionData(section, index);
+                            
+                            if (Array.isArray(questionData?.correct)) {
+                                if (answer.submitted && Array.isArray(answer.selected)) {
+                                    const allCorrect = questionData.correct.every(c => answer.selected.includes(c));
+                                    const noIncorrect = answer.selected.every(s => questionData.correct.includes(s));
+                                    if (allCorrect && noIncorrect) correctCount++;
+                                }
+                            } else if (questionData?.section === 'calculations') {
+                                if (answer === questionData.correct) correctCount++;
+                            } else {
+                                if (answer === questionData?.correct) correctCount++;
+                            }
+                        }
+                    });
+                });
+                
+                alert(`Quiz completed!\n\nAnswered: ${totalAnswered}\nCorrect: ${correctCount}\n\nClick OK to restart.`);
+                
+                currentSection = 'multiple-choice';
+                currentQuestion = 0;
+                selectedOption = null;
+                selectedOptions = [];
+                isSubmitted = false;
+                answers = {
+                    'multiple-choice': Array(sections['multiple-choice'].length).fill(null),
+                    'all': Array(sections['all'].length).fill(null)
+                };
+                
+                setSection('multiple-choice');
+            }
+        }
+
+        function previousCard() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                const storedAnswer = answers[currentSection][currentQuestion];
+                
+                if (isMultipleResponseQuestion()) {
+                    selectedOptions = storedAnswer?.selected || [];
+                    isSubmitted = storedAnswer?.submitted || false;
+                } else {
+                    selectedOption = storedAnswer;
+                }
+                
+                loadQuestion();
+            }
+        }
+
+        function getTotalQuestions() {
+            if (currentSection === 'all') {
+                return sections['all'].length;
+            } else {
+                return sections[currentSection].length;
+            }
+        }
+
+        function getQuestionData(section, index) {
+            if (section === 'all') {
+                return sections['all'][index];
+            } else {
+                return sections[section][index];
+            }
+        }
+
+        // Initialize
+        setSection('multiple-choice');
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.key >= '1' && event.key <= '4') {
+                const index = parseInt(event.key) - 1;
+                const questionData = getCurrentQuestionData();
+                if (!isCalculationSection()) {
+                    selectOption(index, questionData);
+                }
+            } else if (event.key >= 'a' && event.key <= 'd') {
+                const index = event.key.charCodeAt(0) - 97;
+                const questionData = getCurrentQuestionData();
+                if (!isCalculationSection()) {
+                    selectOption(index, questionData);
+                }
+            } else if (event.key === 'Enter' && isMultipleResponseQuestion()) {
+                if (selectedOptions.length > 0 && !isSubmitted) {
+                    submitAnswer();
+                }
+            } else if (event.key === 'ArrowLeft') {
+                if (!document.getElementById('prevBtn').disabled) {
+                    previousCard();
+                }
+            } else if (event.key === 'ArrowRight') {
+                if (!document.getElementById('nextBtn').disabled) {
+                    nextCard();
+                }
+            } else if (event.key === ' ' || event.key === 'Spacebar') {
+                if (!document.getElementById('nextBtn').disabled && !isMultipleResponseQuestion()) {
+                    nextCard();
+                }
+            } else if (event.key === 'Escape') {
+                cancelSelection();
+            }
+        });
+    </script>
+</body>
+</html>
